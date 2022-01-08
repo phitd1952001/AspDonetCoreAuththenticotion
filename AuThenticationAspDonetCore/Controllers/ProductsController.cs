@@ -21,7 +21,7 @@ namespace AuThenticationAspDonetCore.Controllers
         public IActionResult Index()
         {
             var listAllData = _db.Products.ToList();
-            /*ViewData["Message"] = TempData["Message"];*/
+            ViewData["Message"] = TempData["Message"];
             return View(listAllData);
         }
 
@@ -90,7 +90,7 @@ namespace AuThenticationAspDonetCore.Controllers
             var productNeedToDelete = _db.Products.Find(id);
             _db.Products.Remove(productNeedToDelete);
             _db.SaveChanges();
-            /*TempData["Message"] = "Success: Delete Successfully";*/
+            TempData["Message"] = "Success: Delete Successfully";
             return RedirectToAction(nameof(Index));
         }
     }
