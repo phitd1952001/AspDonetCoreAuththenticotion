@@ -14,7 +14,7 @@ namespace AuThenticationAspDonetCore.Controllers
         {
             _db = db;
         }
-
+        [Authorize(Roles = "Admin,Staff")]
         public IActionResult Index()
         {
             var listAllData = _db.Categories.ToList();
@@ -23,6 +23,7 @@ namespace AuThenticationAspDonetCore.Controllers
         
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Upsert(int? id)
         {
             if (id == null)
@@ -35,6 +36,7 @@ namespace AuThenticationAspDonetCore.Controllers
         }
         
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Upsert(Category category)
         {
             if (ModelState.IsValid)
@@ -56,6 +58,7 @@ namespace AuThenticationAspDonetCore.Controllers
         }
         
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var categoryNeedToDelete = _db.Categories.Find(id);
